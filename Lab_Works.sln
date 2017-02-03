@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2_FileSystem_Max_Min", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2_FileSystem_PrimeMin", "Lab2_FileSystem_PrimeMin\Lab2_FileSystem_PrimeMin.csproj", "{8C0EE273-9D2A-49AB-BE79-2ECEFBBD17D9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2_FileSystem_Complex", "Lab2_FileSystem_Complex\Lab2_FileSystem_Complex.csproj", "{7A43F763-1AAC-4761-9327-AF2CF7F85644}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8C0EE273-9D2A-49AB-BE79-2ECEFBBD17D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C0EE273-9D2A-49AB-BE79-2ECEFBBD17D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C0EE273-9D2A-49AB-BE79-2ECEFBBD17D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A43F763-1AAC-4761-9327-AF2CF7F85644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A43F763-1AAC-4761-9327-AF2CF7F85644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A43F763-1AAC-4761-9327-AF2CF7F85644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A43F763-1AAC-4761-9327-AF2CF7F85644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
