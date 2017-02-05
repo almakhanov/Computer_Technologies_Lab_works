@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab2_FileSystem_Complex", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3_FarManager", "Lab3_FarManager\Lab3_FarManager.csproj", "{4513803D-CA49-45BA-A79F-001D2589A4A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3_FarManager_Recursion", "Lab3_FarManager_Recursion\Lab3_FarManager_Recursion.csproj", "{1DB16C18-8B82-43C1-B4C2-43613F6A2E90}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draft", "Draft\Draft.csproj", "{F2DC470B-05EA-4696-8BAF-D013936EF1C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{4513803D-CA49-45BA-A79F-001D2589A4A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4513803D-CA49-45BA-A79F-001D2589A4A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4513803D-CA49-45BA-A79F-001D2589A4A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DB16C18-8B82-43C1-B4C2-43613F6A2E90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DB16C18-8B82-43C1-B4C2-43613F6A2E90}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DB16C18-8B82-43C1-B4C2-43613F6A2E90}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DB16C18-8B82-43C1-B4C2-43613F6A2E90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F2DC470B-05EA-4696-8BAF-D013936EF1C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F2DC470B-05EA-4696-8BAF-D013936EF1C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F2DC470B-05EA-4696-8BAF-D013936EF1C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F2DC470B-05EA-4696-8BAF-D013936EF1C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

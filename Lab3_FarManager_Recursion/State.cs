@@ -11,7 +11,6 @@ namespace Lab3_FarManager
     {
         int index;
         DirectoryInfo folder;
-        FileInfo file;
         public int MaxIndex;
 
         public DirectoryInfo Folder
@@ -23,22 +22,9 @@ namespace Lab3_FarManager
             set
             {
                 folder = value;
-                MaxIndex = folder.GetDirectories().Length + folder.GetFiles().Length;
+                MaxIndex = folder.GetDirectories().Length;
             }
         }
-
-        public FileInfo File
-        {
-            get
-            {
-                return file;
-            }
-            set
-            {
-                file = value;
-            }
-        }
-
         public int Index
         {
             get
@@ -47,14 +33,12 @@ namespace Lab3_FarManager
             }
             set
             {
-                if(value >= 0 && value < MaxIndex)
+                if (value >= 0 && value < MaxIndex)
                 {
                     index = value;
                 }
             }//set
         }//end index
-
-       
 
     }//end class
 }

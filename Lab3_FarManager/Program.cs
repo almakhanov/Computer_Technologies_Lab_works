@@ -12,7 +12,9 @@ namespace Lab3_FarManager
         public static void ShowFolder(State state)
         {
             Console.Clear();
+            FileInfo[] files = state.Folder.GetFiles();
             DirectoryInfo[] list = state.Folder.GetDirectories();
+            
             for(int i = 0; i<list.Length; i++)
             {
                 if(i == state.Index)
@@ -25,6 +27,19 @@ namespace Lab3_FarManager
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.WriteLine();
             }
+            for (int i = list.Length; i < files.Length + list.Length; i++)
+            {
+                if (i == state.Index)
+                {
+                    Console.BackgroundColor = ConsoleColor.Gray;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                Console.Write(files[i-list.Length].Name);
+                Console.BackgroundColor = ConsoleColor.Blue;
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine();
+            }
+
         }
         
 
@@ -70,5 +85,6 @@ namespace Lab3_FarManager
                 }
             }//end while
         }//end Main
+        
     }//end class
 }
