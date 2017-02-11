@@ -10,6 +10,8 @@ namespace Lab3_FarManager_Files
 {
     class Program
     {
+        public static bool IsFileOpened = false;
+
         public static void ShowInfo(State state)
         {
             Console.Clear();
@@ -41,6 +43,7 @@ namespace Lab3_FarManager_Files
                 Index = 0
             };
 
+
             Stack<State> layers = new Stack<State>();
             bool alive = true;
             layers.Push(state);
@@ -48,7 +51,9 @@ namespace Lab3_FarManager_Files
             #region keyBoard
             while (alive)
             {
+                if(IsFileOpened == false)
                 ShowInfo(layers.Peek());
+
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
                 switch (pressedKey.Key)
                 {
@@ -59,6 +64,12 @@ namespace Lab3_FarManager_Files
                         layers.Peek().Index++;
                         break;
                     case ConsoleKey.Backspace:
+                        if (IsFileOpened)
+                        {
+                            Console.Clear();
+                            IsFileOpened = false;
+                        }
+                        else
                         layers.Pop();
                         break;
                     case ConsoleKey.Escape:
@@ -78,9 +89,26 @@ namespace Lab3_FarManager_Files
                         }
                         else
                         {
-                            Process.Start(fs.FullName);
+                            IsFileOpened = true;
+
+                            string file = layers.Peek().Dir.GetFileSystemInfos()[layers.Peek().Index].FullName;
+                            FileStream fls = new FileStream(file, FileMode.Open, FileAccess.Read);
+                            {
+                                string line;
+                                StreamReader sr = new StreamReader(fls);
+                                Console.Clear();
+                                while ((line = sr.ReadLine()) != null)
+                                {
+                                    Console.WriteLine(line);
+                                }
+
+                                sr.Close();
+                            }
+                            
+                            fls.Close();
+                            //Process.Start(fs.FullName);
                         }
-                                                
+
                         break;
                     default:
                         break;
