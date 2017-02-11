@@ -1,24 +1,18 @@
 ﻿using System;
-
 using System.Collections.Generic;
-
 using System.Linq;
-
 using System.Text;
-
 using System.Threading.Tasks;
-
 using System.IO;
 namespace MAX
 {
     class Program
     {
         static void Main(string[] args)
-        {
-            
-            string[] lines = System.IO.File.ReadAllLines(@"D:\input.txt");
+        {            
+            string[] lines = File.ReadAllLines(@"D:\input.txt");
 
-            System.Console.WriteLine("Contents of Input.txt = " + "\n");
+            Console.WriteLine("Contents of Input.txt = " + "\n");
 
             foreach (string line in lines)
             {

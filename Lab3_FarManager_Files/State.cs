@@ -5,39 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3_FarManager
+namespace Lab3_FarManager_Files
 {
     class State
     {
         int index;
-        DirectoryInfo folder;
-        FileInfo file;
+        DirectoryInfo dir;
+       
         public int MaxIndex;
         #region Get&Set
-        public DirectoryInfo Folder
+        public DirectoryInfo Dir
         {
             get
             {
-                return folder;
+                return dir;
             }
             set
             {
-                folder = value;
-                MaxIndex = folder.GetDirectories().Length + folder.GetFiles().Length;
+                dir = value;
+                MaxIndex = dir.GetFileSystemInfos().Length;
             }
         }
 
-        public FileInfo File
-        {
-            get
-            {
-                return file;
-            }
-            set
-            {
-                file = value;
-            }
-        }
+        
 
         public int Index
         {

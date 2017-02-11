@@ -5,40 +5,66 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lab3_FarManager
+namespace FarWithRecursion
 {
-    class State
+    class CustomFolderInfo
     {
+        CustomFolderInfo prev;
         int index;
-        DirectoryInfo folder;
-        public int MaxIndex;
+        DirectoryInfo[] dirs;
 
-        public DirectoryInfo Folder
+        public CustomFolderInfo(CustomFolderInfo prev, int index, DirectoryInfo[] directoryInfo)
         {
-            get
+            this.prev = prev;
+            this.index = index;
+            this.dirs = directoryInfo;        }
+
+        public void PrintFolderInfo()
+
+        {
+
+            Console.Clear();
+
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            for (int i = 0; i < dirs.Length; ++i)
             {
-                return folder;
-            }
-            set
-            {
-                folder = value;
-                MaxIndex = folder.GetDirectories().Length;
+                if (i == index)
+                {
+                    Console.BackgroundColor = ConsoleColor.White;
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
+                }
+                else
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
+                Console.WriteLine(dirs[i]);
             }
         }
-        public int Index
+        public void DecreaseIndex()
         {
-            get
-            {
-                return index;
-            }
-            set
-            {
-                if (value >= 0 && value < MaxIndex)
-                {
-                    index = value;
-                }
-            }//set
-        }//end index
+            if (index - 1 >= 0)
+                index--;
+        }
 
-    }//end class
+        public void IncreaseIndex()
+        {
+            if (index + 1 < dirs.Length)
+                index++;
+        }
+
+        public CustomFolderInfo GetNextItem()
+        {
+            return new CustomFolderInfo(this, 0, this.dirs[index].GetDirectories());
+        }
+
+        public CustomFolderInfo GetPrevItem()
+        {
+            return prev;
+        }
+
+    }
+
 }

@@ -44,10 +44,20 @@ namespace Student_Class
             Student B = new Student("Borya", "Telzhanov", 18, 3.17d);
 
             Student C = new Student();
-            C.name = "Adlet";
-            C.surname = "Balzhanov";
-            C.age = 18;
-            C.gpa = 3.72d;
+            /* C.name = "Adlet";
+             C.surname = "Balzhanov";
+             C.age = 18;
+             C.gpa = 3.72d;*/
+            Console.WriteLine("Name: ");
+            C.name = Console.ReadLine();
+            Console.WriteLine("Surname: ");
+            C.surname = Console.ReadLine();
+            Console.WriteLine("Age: ");
+            C.age = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("GPA: ");
+            C.gpa = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine();
+
 
             Console.WriteLine(A.ToString());
             Console.WriteLine(B.ToString());
