@@ -1,39 +1,77 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Diagnostics;
 
-namespace ConsoleApplication1
+namespace Lab3_FarManager_Files
 {
+    class State
+    {
+        int index;
+        DirectoryInfo dir;
+
+        public int MaxIndex;
+        #region Get&Set
+        public DirectoryInfo Dir
+        {
+            get
+            {
+                return dir;
+            }
+            set
+            {
+                dir = value;
+                MaxIndex = dir.GetFileSystemInfos().Length;
+            }
+        }
+
+
+
+        public int Index
+        {
+            get
+            {
+                return index;
+            }
+            set
+            {
+                if (value >= 0 && value < MaxIndex)
+                {
+                    index = value;
+                }
+            }//set
+        }//end index
+        #endregion
+
+
+
+    }
+
     class Program
     {
-        static void showInfo(DirectoryInfo dir, int cursor)
+        public static bool IsFileOpened = false;
+
+        public static void ShowInfo(State state)
         {
             Console.Clear();
-            FileSystemInfo[] infos = dir.GetFileSystemInfos();
+            FileSystemInfo[] infos = state.Dir.GetFileSystemInfos();
             for (int i = 0; i < infos.Length; i++)
             {
-                /*
-                if(i == cursor)
+                if (i == state.Index)
                 {
-                    Console.BackgroundColor = ConsoleColor.Blue;
-                } else {
-                    Console.BackgroundColor = ConsoleColor.Black;
+                    if (infos[i].GetType() == typeof(DirectoryInfo))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    if (infos[i].GetType() == typeof(FileInfo))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
                 }
-                */
-                Console.BackgroundColor = (i == cursor) ? ConsoleColor.Blue : ConsoleColor.Black;
-                /*
-                if (infos[i].GetType() == typeof(DirectoryInfo))
-                {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                } else {
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                }
-                */
-                Console.ForegroundColor = (infos[i].GetType() == typeof(DirectoryInfo)) ? ConsoleColor.Yellow : ConsoleColor.Magenta;
+                else Console.ForegroundColor = ConsoleColor.White;
 
                 Console.WriteLine(infos[i].Name);
             }
@@ -41,40 +79,83 @@ namespace ConsoleApplication1
 
         static void Main(string[] args)
         {
-            Console.CursorVisible = false;
-            int cursor = 0;
-            DirectoryInfo dir = new DirectoryInfo(@"D:\");
-
-            while (true)
+            State state = new State
             {
-                showInfo(dir, cursor);
-                ConsoleKeyInfo btn = Console.ReadKey();
-                switch (btn.Key)
+                Dir = new DirectoryInfo(@"D:\"),
+                Index = 0
+            };
+
+
+            Stack<State> layers = new Stack<State>();
+            bool alive = true;
+            layers.Push(state);
+            
+            while (alive)
+            {
+                if (IsFileOpened == false)
+                    ShowInfo(layers.Peek());
+
+                ConsoleKeyInfo pressedKey = Console.ReadKey();
+                switch (pressedKey.Key)
                 {
                     case ConsoleKey.UpArrow:
-                        if (cursor > 0) cursor--;
+                        layers.Peek().Index--;
                         break;
                     case ConsoleKey.DownArrow:
-                        if (cursor < dir.GetFileSystemInfos().Length - 1) cursor++;
+                        layers.Peek().Index++;
+                        break;
+                    case ConsoleKey.Backspace:
+                        if (IsFileOpened)
+                        {
+                            Console.Clear();
+                            IsFileOpened = false;
+                        }
+                        else
+                            layers.Pop();
+                        break;
+                    case ConsoleKey.Escape:
+                        alive = false;
                         break;
                     case ConsoleKey.Enter:
-                        FileSystemInfo fs = dir.GetFileSystemInfos()[cursor];
+
+                        FileSystemInfo fs = layers.Peek().Dir.GetFileSystemInfos()[layers.Peek().Index];
                         if (fs.GetType() == typeof(DirectoryInfo))
                         {
-                            dir = new DirectoryInfo(fs.FullName);
+                            State substate = new State
+                            {
+                                Dir = new DirectoryInfo(fs.FullName),
+                                Index = 0
+                            };
+                            layers.Push(substate);
                         }
                         else
                         {
-                            Process.Start(fs.FullName);
+                            IsFileOpened = true;
+
+                            string file = layers.Peek().Dir.GetFileSystemInfos()[layers.Peek().Index].FullName;
+                            FileStream fls = new FileStream(file, FileMode.Open, FileAccess.Read);
+                            {
+                                string line;
+                                StreamReader sr = new StreamReader(fls);
+                                Console.Clear();
+                                while ((line = sr.ReadLine()) != null)
+                                {
+                                    Console.WriteLine(line);
+                                }
+
+                                sr.Close();
+                            }
+
+                            fls.Close();
                         }
+
                         break;
-                    case ConsoleKey.Escape:
-                        dir = dir.Parent;
+
+                    default:
                         break;
                 }
-
             }
-        }
 
+        }
     }
 }

@@ -110,6 +110,7 @@ namespace Lab3_FarManager_Files
                         }
 
                         break;
+                    
                     default:
                         break;
                 }
