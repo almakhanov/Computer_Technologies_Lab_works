@@ -64,6 +64,9 @@ namespace Lab3_FarManager_Files
                         layers.Peek().Index++;
                         break;
                     case ConsoleKey.Backspace:
+                        if (layers.Count == 1 && IsFileOpened == false)
+                            alive = false;
+                        else
                         if (IsFileOpened)
                         {
                             Console.Clear();
