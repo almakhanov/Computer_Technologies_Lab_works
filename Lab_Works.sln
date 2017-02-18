@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4_XmlSerialization_Compl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4_BinaryFormatterSerialization_Complex", "Lab4_BinaryFormatterSerialization_Complex\Lab4_BinaryFormatterSerialization_Complex.csproj", "{F62D5029-DCAB-4B2E-AA22-51E6EF138025}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4_JsonSerialization_Complex", "Lab4_JsonSerialization_Complex\Lab4_JsonSerialization_Complex.csproj", "{F6F60B86-81B4-465A-8C8F-EB3E0E619446}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{F62D5029-DCAB-4B2E-AA22-51E6EF138025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F62D5029-DCAB-4B2E-AA22-51E6EF138025}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F62D5029-DCAB-4B2E-AA22-51E6EF138025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6F60B86-81B4-465A-8C8F-EB3E0E619446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6F60B86-81B4-465A-8C8F-EB3E0E619446}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6F60B86-81B4-465A-8C8F-EB3E0E619446}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6F60B86-81B4-465A-8C8F-EB3E0E619446}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
