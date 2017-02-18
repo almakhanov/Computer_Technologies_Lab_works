@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+using System.Xml.Serialization;
+
 
 namespace DRAFT
 {
@@ -64,21 +61,26 @@ namespace DRAFT
     {
         static void Main(string[] args)
         {
-            
+            XmlSerializer xs = new XmlSerializer(typeof(Complex));
 
             FileStream fs = new FileStream("complex.txt", FileMode.OpenOrCreate, FileAccess.ReadWrite);
 
             Complex z1 = new Complex(1, 3);
             Complex z2 = new Complex(2, 5);
             Complex z3 = z1 + z2;
-            
+
+            xs.Serialize(fs, z3);
 
             fs.Close();
 
-            string json = JsonConvert.SerializeObject(z3);
-            
-            File.WriteAllText("JSON.txt",json);
+            Complex z4 = new Complex();
+            FileStream fs2 = new FileStream("complex.txt", FileMode.Open, FileAccess.Read);
 
+            z4 = xs.Deserialize(fs2) as Complex;
+
+            Console.WriteLine("Z=" + z4.A + "+" + z4.B + "i");
+
+            fs2.Close();
 
 
             Console.WriteLine("Press any key to quit");

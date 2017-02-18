@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Draft", "Draft\Draft.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab3_FarManager_Files", "Lab3_FarManager_Files\Lab3_FarManager_Files.csproj", "{B2835668-3C14-4AB4-AFD6-2AEB75270C9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab4_XmlSerialization_Complex", "Lab4_XmlSerialization_Complex\Lab4_XmlSerialization_Complex.csproj", "{F594D713-F77A-487E-977A-D9A87CE77C17}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{B2835668-3C14-4AB4-AFD6-2AEB75270C9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B2835668-3C14-4AB4-AFD6-2AEB75270C9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B2835668-3C14-4AB4-AFD6-2AEB75270C9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F594D713-F77A-487E-977A-D9A87CE77C17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F594D713-F77A-487E-977A-D9A87CE77C17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F594D713-F77A-487E-977A-D9A87CE77C17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F594D713-F77A-487E-977A-D9A87CE77C17}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
