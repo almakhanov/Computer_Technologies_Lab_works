@@ -20,7 +20,7 @@ namespace Lab5_Snake
 
         public static void Init()
         {
-            Thread t = new Thread(new ThreadStart(Move));
+            Thread t = new Thread((Move));
             
             Console.SetWindowSize(70, 35);
             Console.CursorVisible = false;
@@ -41,23 +41,29 @@ namespace Lab5_Snake
             food = new Food(ConsoleColor.Green, '@', food_body);
 
             t.Start();
-            Thread.Sleep(1000);
+
+            while (true)
+            {
+                snake.Move(Qx, Qy);
+                Draw();
+                Thread.Sleep(300);
+                
+            }
+            
         }
 
         public static void Move()
         {
-            snake.Move(Qx, Qy);
+            
                         
             while (!Game.GameOver)
             {
-                Game.Draw();
-                
-                
+                Game.Draw();              
+
                 ConsoleKeyInfo btn = Console.ReadKey();
                 switch (btn.Key)
                 {
                     case ConsoleKey.UpArrow:
-
                         Game.snake.Move(0, -1);
                         Qx = 0;
                         Qy = -1;
@@ -93,12 +99,14 @@ namespace Lab5_Snake
                 }
                 //Thread.Sleep(1000);
 
+                
+
             }
         }
 
         
         public static void Draw()
-        {
+        {            
             snake.Draw();
             food.Draw();
             wall.Draw();            
