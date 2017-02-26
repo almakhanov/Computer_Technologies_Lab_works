@@ -6,18 +6,45 @@ using System.Threading.Tasks;
 
 namespace Lab5_Snake
 {
-    class Food
+    [Serializable]
+    public class Food : Drawer
     {
-        public Point location;
-        public char sign = '$';
-        public Food()
+        public Food() { }
+        
+        public Food(ConsoleColor color, char sign, List<Point> body) : base(color, sign, body)
         {
-            location = new Point(new Random().Next() % 30, new Random().Next() % 30);
+            SetRandomPosition();
         }
-        public void Draw()
+
+        public void SetRandomPosition()
         {
-            Console.SetCursorPosition(location.x, location.y);
-            Console.Write(sign);
+            int x = new Random().Next(0, 35);
+            int y = new Random().Next(0, 35);
+
+            body[0] = new Point(x, y);
         }
+
+        public void CollisionWalls()
+        {
+            for(int i = 0; i < Game.wall.body.Count; i++)
+            {
+                if(Game.food.body[0].x == Game.wall.body[i].x && Game.food.body[0].y == Game.wall.body[i].y)
+                {
+                    SetRandomPosition();
+                }
+            }
+        }
+
+        public void CollisionSnake()
+        {
+            for(int i = 0; i < Game.snake.body.Count; i++)
+            {
+                if (Game.food.body[0].x == Game.snake.body[i].x && Game.food.body[0].y == Game.snake.body[i].y)
+                {
+                    SetRandomPosition();
+                }
+            }
+        }
+        
     }
 }

@@ -3,39 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 
-namespace Lab5_Snake
+
+namespace NMySnake.Model
 {
     [Serializable]
-    public class Worm : Drawer
+    public class Snake : Drawer
     {
-        public Worm() { }
-
-        public Worm(ConsoleColor color, char sign, List<Point> body) : base(color, sign, body) { }
+        public Snake() { }
+        public Snake(ConsoleColor color, char sign, List<Point> body) : base(color, sign, body) { }
 
         public void Move(int dx, int dy)
         {
-            //Delete();
+            delete();
 
-            for(int i = body.Count - 1; i > 0; i--)
+            for (int i = body.Count - 1; i > 0; i--)
             {
                 body[i].x = body[i - 1].x;
                 body[i].y = body[i - 1].y;
-                Delete();
             }
 
             body[0].x += dx;
             body[0].y += dy;
 
             Border();
-            CollisionWall();
-            CollisionSnake();
+            CollesionWall();
+            CollesionSnake();
             NewFood();
             NewLevel();
+            // TODO: can snake eat?
+            // TODO: check for collision with wall 
+            // TODO: check for collision with itself (snake)
+            // TODO: check for collision with border (console border (maximum width and height))
+            // TODO: if necessary, load new level of the wall
         }
 
-        public void CollisionWall()
+        public void CollesionWall()
         {
             for (int i = 0; i < Game.wall.body.Count; i++)
             {
@@ -48,9 +53,9 @@ namespace Lab5_Snake
                     Game.GameOver = true;
                 }
             }
-        }
 
-        public void CollisionSnake()
+        }
+        public void CollesionSnake()
         {
             for (int i = 2; i < Game.snake.body.Count; i++)
             {
@@ -65,7 +70,6 @@ namespace Lab5_Snake
                 }
             }
         }
-
         public void NewFood()
         {
             if (Game.snake.CanEat(Game.food))
@@ -73,7 +77,6 @@ namespace Lab5_Snake
                 Game.food.SetRandomPosition();
             }
         }
-
         public void NewLevel()
         {
 
@@ -86,6 +89,7 @@ namespace Lab5_Snake
             {
                 Game.wall.LoadLevel(3);
             }
+
         }
 
         public void Border()
@@ -106,14 +110,39 @@ namespace Lab5_Snake
             return false;
         }
 
-        public void Delete()
+        public void delete()
         {
             if (body[body.Count - 1].x == body[body.Count - 2].x && body[body.Count - 1].y == body[body.Count - 2].y)
             {
                 Console.Clear();
-                Console.Write(' ');
+                Console.Write(' '); 
+
             }
+
+
+
+        }
+        /*
+        public void save()
+        {
+            FileStream fs = new FileStream("snake.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            BinaryFormatter bf = new BinaryFormatter();
+            bf.Serialize(fs, this);
+            fs.Close();            
         }
 
+        public void deser()
+        {
+            FileStream fs = new FileStream("snake.dat", FileMode.OpenOrCreate, FileAccess.ReadWrite);
+            BinaryFormatter bf = new BinaryFormatter();
+            Snake snake = bf.Deserialize(fs) as Snake;
+            this.body = snake.body;
+            this.color = snake.color;
+            this.sign = snake.sign;
+
+
+            fs.Close();
+        }
+        */
     }
 }

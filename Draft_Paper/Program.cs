@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NMySnake.Model;
 
-namespace Lab5_Snake
+namespace NMySnake
 {
     class Program
     {
+
         static void Main(string[] args)
         {
             Game.Init();
             Game.Move();
+            
         }
     }
 }

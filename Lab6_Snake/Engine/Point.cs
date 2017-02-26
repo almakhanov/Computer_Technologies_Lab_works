@@ -3,30 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Xml.Serialization;
 
-namespace Lab5_Snake
+namespace Lab6_Snake.Engine
 {
-    [Serializable]
     public class Point
     {
-        
         public int x;
         public int y;
 
         public Point() { }
 
-        public Point(int x, int y)
+        public Point(int _x, int _y)
         {
-            this.x = x;
-            this.y = y;
+            x = _x;
+            y = _y;
         }
 
-        /*public override bool Equals(object obj)
+        public override bool Equals(object obj)
         {
             Point o = obj as Point;
-            if (this.x == o.x && this.y == o.y) return true;
+            if (x == o.x && y == o.y) return true;
             return false;
-        }*/
+        }
     }
 }

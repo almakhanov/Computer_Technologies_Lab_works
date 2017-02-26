@@ -7,41 +7,39 @@ using System.Threading.Tasks;
 
 namespace Lab5_Snake
 {
-    class Wall
+    [Serializable]
+    public class Wall : Drawer
     {
-        public char sign = '#';
-        public List<Point> bricks = new List<Point>();
-        public Wall(int level)
-        {
-            string fname = string.Format(@"Levels\level{0}.txt", level);
-            using (FileStream fs = new FileStream(fname, FileMode.OpenOrCreate, FileAccess.ReadWrite))
-            {
-                using (StreamReader sr = new StreamReader(fs))
-                {
-                    int colNumber = 0;
-                    while (!sr.EndOfStream)
-                    {
-                        string line = sr.ReadLine();
-                        for (int rowNumber = 0; rowNumber < line.Length; ++rowNumber)
-                        {
-                            if (line[rowNumber] == '#')
-                            {
-                                bricks.Add(new Point(rowNumber, colNumber));
-                            }
-                        }
+        public Wall() { }
 
-                        colNumber++;
-                    }
-                }
-            }
+        public Wall(ConsoleColor color, char sign, List<Point> body) : base(color, sign, body)
+        {
+            LoadLevel(1);
         }
 
-        public void Draw()
+        public void LoadLevel(int level)
         {
-            for (int i = 0; i < bricks.Count; ++i)
+            body.Clear();
+            string fname = string.Format("Levels/level{0}.txt", level);
+            
+            using (FileStream fs = new FileStream(fname, FileMode.Open, FileAccess.Read))
             {
-                Console.SetCursorPosition(bricks[i].x, bricks[i].y);
-                Console.Write(sign);
+                using(StreamReader sr = new StreamReader(fs))
+                {
+                    string line = "";
+                    int row = 0; 
+                    while((line = sr.ReadLine()) != null)
+                    {
+                        for(int col = 0; col < line.Length; col++)
+                        {
+                            if(line[col] == '#')
+                            {
+                                body.Add(new Point(col, row));
+                            }
+                        }
+                        row++;
+                    }
+                }
             }
         }
     }
