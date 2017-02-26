@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Xml.Serialization;
+using System.Threading;
 
 namespace Lab5_Snake
 {
@@ -14,6 +15,7 @@ namespace Lab5_Snake
         public ConsoleColor color;
         public char sign;
         public List<Point> body = new List<Point>();
+
 
         public Drawer() { }
 
@@ -27,10 +29,11 @@ namespace Lab5_Snake
         public void Draw()
         {
             Console.ForegroundColor = color;
-            foreach(Point p in body)
+            
+            foreach (Point p in body)
             {
                 Console.SetCursorPosition(p.x, p.y);
-                Console.Write(sign);
+                Console.Write(sign);                
             }
         }
 

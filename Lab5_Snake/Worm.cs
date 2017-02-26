@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Threading;
 
 namespace Lab5_Snake
 {
@@ -17,8 +18,8 @@ namespace Lab5_Snake
         public void Move(int dx, int dy)
         {
             //Delete();
-
-            for(int i = body.Count - 1; i > 0; i--)
+            
+            for (int i = body.Count - 1; i > 0; i--)
             {
                 body[i].x = body[i - 1].x;
                 body[i].y = body[i - 1].y;
@@ -33,7 +34,10 @@ namespace Lab5_Snake
             CollisionSnake();
             NewFood();
             NewLevel();
+           
         }
+
+
 
         public void CollisionWall()
         {
