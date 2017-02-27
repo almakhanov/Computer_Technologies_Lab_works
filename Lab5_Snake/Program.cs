@@ -7,12 +7,11 @@ using System.Threading;
 
 namespace Lab5_Snake
 {
-    class Program
+    class Program : Menu
     {
         static void Main(string[] args)
         {
-            Game.Init();
-            Game.Move();
+            MenuBar();
         }
     }
 }

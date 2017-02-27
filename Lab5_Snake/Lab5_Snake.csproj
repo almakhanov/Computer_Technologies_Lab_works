@@ -46,6 +46,7 @@
     <Compile Include="Drawer.cs" />
     <Compile Include="Food.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Menu.cs" />
     <Compile Include="Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

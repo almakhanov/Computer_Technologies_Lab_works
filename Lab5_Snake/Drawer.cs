@@ -41,24 +41,32 @@ namespace Lab5_Snake
         {
             string fname = this.GetType().Name;
             XmlSerializer xs = new XmlSerializer(this.GetType());
-            using (FileStream fs = new FileStream(string.Format("{0}.xml", fname), FileMode.OpenOrCreate, FileAccess.ReadWrite))
+            using (FileStream fs = new FileStream(string.Format("{0}.xml", fname), FileMode.Truncate, FileAccess.ReadWrite))
             {
                 xs.Serialize(fs, this);
             }
         }
-
-        /*public void release()
+        public void Continue()
         {
-            Type t = this.GetType();
-            FileStream fs = new FileStream(String.Format("{0}.dat", t.Name), FileMode.OpenOrCreate, FileAccess.ReadWrite);
-            BinaryFormatter bf = new BinaryFormatter();
-            if (t == typeof(Wall))
-                Game.wall = bf.Deserialize(fs) as Wall;
-            if (t == typeof(Snake))
-                Game.snake = bf.Deserialize(fs) as Snake;
-            if (t == typeof(Food))
-                Game.food = bf.Deserialize(fs) as Food;
-            fs.Close();
-        }*/
+            Type type = this.GetType();
+            XmlSerializer xs = new XmlSerializer(GetType());
+            using (FileStream fs = new FileStream(string.Format("{0}.xml", type.Name), FileMode.Open, FileAccess.Read))
+            {
+                if(type == typeof(Worm))
+                {
+                    Game.snake = xs.Deserialize(fs) as Worm;
+                }
+                if(type == typeof(Wall))
+                {
+                    Game.wall = xs.Deserialize(fs) as Wall;
+                }
+                if(type == typeof(Food))
+                {
+                    Game.food = xs.Deserialize(fs) as Food;
+                }
+            }
+        }
+
+        
     }
 }

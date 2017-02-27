@@ -10,7 +10,6 @@ namespace Lab5_Snake
     [Serializable]
     public class Point
     {
-        
         public int x;
         public int y;
 

@@ -20,21 +20,23 @@ namespace Lab5_Snake
 
         public static void Init()
         {
-            Thread t = new Thread((Move));
+            Thread t = new Thread(new ThreadStart(Game.Move));
+           // Thread t2 = new Thread(new ThreadStart(Move(Qx, Qy)));
             
-            Console.SetWindowSize(70, 35);
+            Console.SetWindowSize(100, 35);
             Console.CursorVisible = false;
             Console.SetWindowPosition(0, 0);
+            
 
             GameOver = false;
 
             List<Point> wall_body = new List<Point>();
-            wall = new Wall(ConsoleColor.Blue, '#', wall_body);
+            wall = new Wall(ConsoleColor.Red, '#', wall_body);
 
             List<Point> snake_body = new List<Point>();
             snake_body.Add(new Point(10, 10));
             snake_body.Add(new Point(9, 10));
-            snake = new Worm(ConsoleColor.Magenta, 'o', snake_body);
+            snake = new Worm(ConsoleColor.Yellow, 'o', snake_body);
 
             List<Point> food_body = new List<Point>();
             food_body.Add(new Point(0, 0));
@@ -46,8 +48,7 @@ namespace Lab5_Snake
             {
                 snake.Move(Qx, Qy);
                 Draw();
-                Thread.Sleep(300);
-                
+                Thread.Sleep(400);                
             }
             
         }
@@ -56,9 +57,9 @@ namespace Lab5_Snake
         {
             
                         
-            while (!Game.GameOver)
+            while (!GameOver)
             {
-                Game.Draw();              
+                Draw();              
 
                 ConsoleKeyInfo btn = Console.ReadKey();
                 switch (btn.Key)
@@ -84,7 +85,9 @@ namespace Lab5_Snake
                         Qy = 0;
                         break;
                     case ConsoleKey.Escape:
-                        Game.GameOver = true;
+                        GameOver = true;
+                        Console.Clear();
+
                         break;
                     case ConsoleKey.F2:
                         snake.Save();
@@ -92,9 +95,9 @@ namespace Lab5_Snake
                         food.Save();
                         break;
                     case ConsoleKey.F3:
-                        //snake.release();
-                        //wall.release();
-                        //food.release();
+                        snake.Continue();
+                        wall.Continue();
+                        food.Continue();
                         break;
                 }
                 //Thread.Sleep(1000);
@@ -109,7 +112,76 @@ namespace Lab5_Snake
         {            
             snake.Draw();
             food.Draw();
-            wall.Draw();            
+            wall.Draw();
+            Console.SetCursorPosition(71,1);
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.WriteLine("| F2 - Save");
+            Console.SetCursorPosition(71, 2);
+            Console.WriteLine("| Esc - Exit");
+            Console.SetCursorPosition(71, 3);
+            Console.WriteLine("| F3 - Release");
+            Console.SetCursorPosition(71, 4);
+            Console.WriteLine("| UpArrow - Move Up");
+            Console.SetCursorPosition(71, 5);
+            Console.WriteLine("| DownArrow - Move Down");
+            Console.SetCursorPosition(71, 6);
+            Console.WriteLine("| LeftArrow - Move Left");
+            Console.SetCursorPosition(71, 7);
+            Console.WriteLine("| RightArrow - Move Right");
+            Console.SetCursorPosition(71, 8);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 9);
+            Console.WriteLine("| Score - "+ snake.body.Count);
+            Console.SetCursorPosition(71, 10);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 11);
+            Console.WriteLine("| Level - {0}", snake.body.Count/4+1);
+            Console.SetCursorPosition(71, 12);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 13);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 14);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 15);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 16);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 17);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 18);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 19);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 20);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 21);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 22);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 23);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 24);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 25);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 26);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 27);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 28);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 29);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 30);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 31);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 32);
+            Console.WriteLine("|");
+            Console.SetCursorPosition(71, 33);
+            Console.WriteLine("|");
+            
+
         }
 
     }

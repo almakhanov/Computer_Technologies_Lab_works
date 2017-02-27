@@ -18,8 +18,8 @@ namespace Lab5_Snake
 
         public void SetRandomPosition()
         {
-            int x = new Random().Next(0, 35);
-            int y = new Random().Next(0, 35);
+            int x = new Random().Next(1, 69);
+            int y = new Random().Next(1, 34);
 
             body[0] = new Point(x, y);
         }

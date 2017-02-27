@@ -75,6 +75,8 @@ namespace Lab5_Snake
             if (Game.snake.CanEat(Game.food))
             {
                 Game.food.SetRandomPosition();
+                Game.food.CollisionWalls();
+                Game.food.CollisionSnake();
             }
         }
 
@@ -83,21 +85,29 @@ namespace Lab5_Snake
 
             if (Game.snake.body.Count == 4)
             {
-                Game.wall.LoadLevel(2);
+                /*List<Point> snake_body = new List<Point>();
+                snake_body.Add(new Point(10, 10));
+                snake_body.Add(new Point(9, 10));
+                Game.snake = new Worm(ConsoleColor.Yellow, 'o', snake_body);*/
+                Game.wall.LoadLevel(2);                
             }
 
             if (Game.snake.body.Count == 8)
             {
-                Game.wall.LoadLevel(3);
+                /*List<Point> snake_body = new List<Point>();
+                snake_body.Add(new Point(10, 10));
+                snake_body.Add(new Point(9, 10));
+                Game.snake = new Worm(ConsoleColor.Yellow, 'o', snake_body);*/
+                Game.wall.LoadLevel(3);                
             }
         }
 
         public void Border()
         {
-            if (body[0].x == 70) body[0].x = 1;
-            if (body[0].y == 35) body[0].y = 1;
-            if (body[0].x <= 0) body[0].x = 70;
-            if (body[0].y <= 0) body[0].y = 35;
+            if (body[0].x > 70) body[0].x = 0;
+            if (body[0].y > 35) body[0].y = 0;
+            if (body[0].x < 0) body[0].x = 70;
+            if (body[0].y < 0) body[0].y = 35;
         }
 
         public bool CanEat(Food f)
