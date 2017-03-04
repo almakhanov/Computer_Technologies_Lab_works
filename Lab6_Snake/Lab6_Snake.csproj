@@ -51,6 +51,7 @@
     <Compile Include="Engine\Point.cs" />
     <Compile Include="Engine\Wall.cs" />
     <Compile Include="Engine\Worm.cs" />
+    <Compile Include="Engine\Menu.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

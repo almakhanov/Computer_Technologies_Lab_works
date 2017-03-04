@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
-namespace Lab6_Snake.Engine
+namespace SnakeII
 {
-    class Worm : GameObject
+    public class Worm : GameObject
     {
-        Game game = null;
-        
+        public Game game = null;
+        public bool isLevel = false;
+
         public void LinkToGame(Game game)
         {
             this.game = game;
@@ -20,28 +22,30 @@ namespace Lab6_Snake.Engine
 
         public Worm()
         {
-            sign = 'o';
-            dx = 0;
-            dy = 0;
+            this.sign = '*';
+            this.dx = 0;
+            this.dy = 0;
         }
 
         public void Generate()
         {
-            points.Add(new Point(10, 10));
+            this.points.Add(new Point(10, 10));
         }
 
         public void Move()
         {
-            while (IsAlive)
+            while (true)
             {
+                Thread.Sleep(Game.SPEED);
+
                 if (points[0].x + dx < 0) continue;
                 if (points[0].y + dy < 0) continue;
-                if (points[0].x + dx > 20) continue;
-                if (points[0].x + dx > 20) continue;
+                if (points[0].x + dx > Game.WIDTH) continue;
+                if (points[0].y + dy > Game.HEIGTH) continue;
 
-                Clear();
+                this.Clear();
 
-                for(int i = points.Count - 1; i > 0; i--)
+                for (int i = points.Count - 1; i > 0; --i)
                 {
                     points[i].x = points[i - 1].x;
                     points[i].y = points[i - 1].y;
@@ -50,10 +54,24 @@ namespace Lab6_Snake.Engine
                 points[0].x = points[0].x + dx;
                 points[0].y = points[0].y + dy;
 
-                Draw();
-
-                game.CanEat(food);
+                this.Draw();
+                
+                
+                if ((points.Count % 412) == 4 && isLevel == false)
+                {
+                    isLevel = true;
+                    Wall wall= new Wall();
+                    wall.Generate(2);
+                    Console.Clear();
+                    
+                    
+                    Load();
+                    wall.Draw();
+                }
+                game.CanEat();
             }
         }
+
+
     }
 }
