@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SnakeII
 {
-    public interface IDrawable 
+    public interface IDrawable
     {
         void Draw();
     }

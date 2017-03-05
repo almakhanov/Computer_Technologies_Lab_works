@@ -14,7 +14,7 @@ namespace SnakeII
         public int index = 0;
         public bool a = true;
 
-        
+
 
         public void MenuBar()
         {
@@ -30,7 +30,7 @@ namespace SnakeII
                 {
                     Console.ForegroundColor = ConsoleColor.Yellow;
                 }
-                
+
                 Console.WriteLine(s[i]);
             }
 
@@ -55,19 +55,14 @@ namespace SnakeII
                             Console.Clear();
                             Game g = new Game();
                             g.Start(true);
-                            
+
 
                         }
                         if (index == 1)
                         {
                             Console.Clear();
                             Game g = new Game();
-                            
-
-
                             g.Start(false);
-
-
 
                         }
                         if (index == 2)

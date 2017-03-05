@@ -55,21 +55,43 @@ namespace SnakeII
                 points[0].y = points[0].y + dy;
 
                 this.Draw();
-                
-                
-                if ((points.Count % 412) == 4 && isLevel == false)
+
+
+                if ((points.Count ) == 4 && isLevel == false)
                 {
                     isLevel = true;
-                    Wall wall= new Wall();
-                    wall.Generate(2);
+                    
+                    Wall wall2 = new Wall();
+                    
+                    wall2.Generate(2);
                     Console.Clear();
+                    Food f = new Food();
+                    f.Generate();
+                    f.Draw();
                     
                     
-                    Load();
-                    wall.Draw();
+                    
+                    wall2.Draw();                   
+                    Move();            
+                    
                 }
+                Border();
                 game.CanEat();
+                if (game.WC()) {
+                    Console.Clear();
+                    Console.WriteLine("GAMEOVER");
+                    Console.ForegroundColor = ConsoleColor.Magenta;
+                    Console.WriteLine("Please press ESC to continue the game...");
+                    break;
+                }
             }
+        }
+        public void Border()
+        {
+            if (points[0].x > 70) points[0].x = 1;
+            if (points[0].y > 35) points[0].y = 1;
+            if (points[0].x <= 0) points[0].x = 70;
+            if (points[0].y <= 0) points[0].y = 35;
         }
 
 

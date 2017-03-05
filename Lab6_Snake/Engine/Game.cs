@@ -20,13 +20,13 @@ namespace SnakeII
         {
             Game.WIDTH = 100;
             Game.HEIGTH = 35;
-            Game.SPEED = 100;
+            Game.SPEED = 300;
             LEVEL = 1;
             Console.SetWindowSize(Game.WIDTH, Game.HEIGTH);
             Console.SetBufferSize(Game.WIDTH + 20, Game.HEIGTH + 20);
             Console.CursorVisible = false;
         }
-
+        bool isalive;
         Worm worm = null;
         Wall wall = null;
         Food food = null;
@@ -56,7 +56,7 @@ namespace SnakeII
             food.Generate();
             //food.SetRandomPosition();
             worm.Generate();
-                        
+
             wall.Generate(LEVEL);
         }
 
@@ -67,12 +67,33 @@ namespace SnakeII
                 worm.points.Add(food.points[0]);
                 food.SetRandomPosition();
                 food.Draw();
+                worm.score++;
                 return true;
             }
+
             return false;
         }
 
-
+        
+        public bool WC() {
+            for (int i = 0; i < worm.points.Count; i++) {
+                for (int j = 0; j < wall.points.Count; j++) {
+                    if (worm.points[i].Equals(wall.points[j])) {
+                        return true;
+                    }
+                }
+            }
+            for (int i = 2; i < worm.points.Count; i++)
+            {
+                if (worm.points[1].Equals(worm.points[i]))
+                {
+                    
+                    return true;
+                }
+            }
+            //isalive = false;
+            return false;
+        }
 
         public void Start(bool is_new_game)
         {
@@ -80,7 +101,8 @@ namespace SnakeII
             {
                 Load();
             }
-            else {
+            else
+            {
                 worm = new Worm();
                 worm = worm.Load() as Worm;
                 worm.LinkToGame(this);
@@ -103,8 +125,8 @@ namespace SnakeII
             t.IsBackground = true;
             t.Start();
 
-
-            while (true)
+            isalive = true;
+            while (isalive)
             {
                 ConsoleKeyInfo pressedKey = Console.ReadKey();
                 switch (pressedKey.Key)
@@ -117,6 +139,10 @@ namespace SnakeII
 
                         t = new Thread(new ThreadStart(worm.Move));
                         t.IsBackground = true;
+                        Console.Clear();
+                        worm.Draw();
+                        wall.Draw();
+                        food.Draw();
                         t.Start();
 
                         break;
@@ -140,6 +166,11 @@ namespace SnakeII
                         worm.dy = 0;
                         break;
                     case ConsoleKey.Escape:
+                        isalive = false;
+                        Console.Clear();
+                        Menu m = new Menu();
+
+                        m.MenuBar();
                         break;
                 }
             }

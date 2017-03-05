@@ -11,6 +11,7 @@ namespace SnakeII
     public abstract class GameObject : IDrawable
     {
         public char sign;
+        public int score = 0;
         public List<Point> points = new List<Point>();
 
         public void Draw()
@@ -38,11 +39,11 @@ namespace SnakeII
                 Console.SetCursorPosition(71, 8);
                 Console.WriteLine("|");
                 Console.SetCursorPosition(71, 9);
-                Console.WriteLine("| Score - " + (points.Count%412));
+                Console.WriteLine("| Score - " + score);
                 Console.SetCursorPosition(71, 10);
                 Console.WriteLine("|");
                 Console.SetCursorPosition(71, 11);
-                Console.WriteLine("| Level - {0}", (points.Count%412) / 4 + 1);
+                Console.WriteLine("| Level - {0}", (score+1) / 4 + 1);
                 Console.SetCursorPosition(71, 12);
                 Console.WriteLine("|");
                 Console.SetCursorPosition(71, 13);
